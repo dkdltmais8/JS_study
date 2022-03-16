@@ -135,20 +135,16 @@
 
 - Interpolation(보간법)
   - ![image-20220316024642589](README.assets/image-20220316024642589.png)
-
 - Directive(디렉티브)
   - ![image-20220316024708014](README.assets/image-20220316024708014.png)
-
 - V-text
   - 엘리먼트의 textContent 업데이트
   - interpolation 문법 = V-text
   - ![image-20220316025025866](README.assets/image-20220316025025866.png)
-
 - V-html
   - 엘리먼트의 innerHTML 업데이트 -> XSS 공격에 취약
   - 임의의 사용자로부터 입력 받은 내용은 **절대 사용 금지**
   - ![image-20220316025140591](README.assets/image-20220316025140591.png)
-
 - v-show
   - 조건부 렌더링
   - 엘리먼트는 항상 렌더링 되고 DOM에 있지만 display CSS 속성만 토글 ( 토클 자주할 때 유용)
@@ -158,7 +154,6 @@
   - 디렉티브 표현식이 true 일때만 렌더링
   - 토글하는 동안 삭제되고 다시 작성되고 반복 ( 토글을 자주 하지 않는 경우에 사용)
   - ![image-20220316025314114](README.assets/image-20220316025314114.png)
-
 - v-for
   - item in items 구문 사용 ( item 위치의 변수 or key를 각 요소에서 사용 가능)
   - 반드시 key 속성을 각 요소에 작성
@@ -167,7 +162,6 @@
 - v-on(@)
   - 엘리먼트에 이벤트 리스너를 연결
   - ![image-20220316025834146](README.assets/image-20220316025834146.png)
-
 - v-bind(:)
   - HTML 요소의 속성에 Vue의 상태 데이터를 값으로 할당
   - Object형태로 사용 가능 -> value의 값이 True인 key가 class 바인딩 값으로 할당
@@ -181,6 +175,39 @@
   - .trim
     - 입력에 대한 trim을 진행
   - ![image-20220316030327852](README.assets/image-20220316030327852.png)
-
-- Options/Data - 'computed'(74)
-  - 
+- Options/Data - 'computed'
+  - 데이터를 기반으로 계산된 속성
+  - 함수의 형태로 정의하지만 함수가 아닌 함수의 반환 값이 바인딩 됨 (반드시 반환 값이 있어야 함)
+  - 종속된 대상을 따라 캐싱 됨
+  - **종속된 대상이 변경될 때만 함수를 실행**
+  - 아무 곳에도 의존하지 않는 computed 속성의 경우 절대로 업데이트 X
+  - ![image-20220316202031405](README.assets/image-20220316202031405.png)
+- Computed & Method
+  - 최종 결과에 대해 두 가지 접근 방식은 서로 동일
+  - 차이점
+    - computed 속성은 종속 대상을 따라 캐싱
+    - computed는 종속된 대상이 변경되지 않는 한 computed에 작성된 함수를 여러 번 호출해도 계산을 다시 하지 않고 계산되어 있던 결과를 반환
+    - method는 호출하면 렌더링을 다시 할 때 마다 항상 함수 실행
+- Options/Data - 'watch'
+  - 데이터를 감시
+  - 데이터에 변화가 일어났을 때 실행되는 함수
+- Computed & Watch
+  - computed
+    - 특정 데이터를 직접적으로 사용/가공하여 다른 값으로 만들 때 사용
+    - 계산해야 하는 목표 데이터를 정의하는 방식
+    - **선언형 프로그래밍**
+      - 계산해야 하는 목표 데이터를 정의
+    - 특정 값이 변동하면 특정 값을 새로 계산해서 보여준다
+  - watch
+    - 특정 데이터의 변화 상황에 맞춰 다른 data가 바뀌어야 할 때 사용
+    - **명령형 프로그래밍**
+      - 데이터가 바뀌면 특정 함수를 실행해!
+    - 특정 값이 변동하면 다른 작업을 한다
+    - 특정 대상이 변경되었을 때 콜백 함수를 실행 시키기 위한 트리거
+- Options/Assets - 'filters'
+  - 텍스트 형식화를 적용할 수 있는 필터
+  - interpolation 혹은 V-bind를 이용할 때 사용 가능
+  - JS 표현식 마지막에 "|"와 함께 추가해야 함
+  - 체이닝 기능
+  - ![image-20220316203505506](README.assets/image-20220316203505506.png)
+- 
